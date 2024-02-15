@@ -10,6 +10,8 @@ class Fibonacci(viewsets.ViewSet):
     def get(self, request, fibonacci_number):
         try :
             fibonacci_number = int(fibonacci_number)
+            if fibonacci_number < 0 :
+                return Response({"message":"Number should be positive"},status = status.HTTP_400_BAD_REQUEST)
             if fibonacci_number > 1:
                 fib_sequence = [0, 1]
             elif fibonacci_number == 1:
